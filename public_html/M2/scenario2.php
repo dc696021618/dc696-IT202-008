@@ -3,7 +3,7 @@
 // @ts-nocheck
 require_once "base.php";
 
-$ucid = "mt85"; // <-- set your ucid
+$ucid = "dc696"; // <-- set your ucid
 
 // Don't edit the arrays below, they are used to test your code
 $array1 = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6];
@@ -20,7 +20,7 @@ function sumValues($arr, $arrayNumber)
     printScenario2ArrayInfo($arr, $arrayNumber);
     // This should be solved without Copilot auto-completion, to toggle it, click the Copilot chat bubble at the top of the editor.
     //  Configure inline suggestions to "Disabled Inline Suggestions" (or similar) when writing code for this problem.
-    
+
     // Challenge 1: Sum all the values of the passed in array and assign to the `total` variable
     // Challenge 2: Have the sum (total) be represented as a number with exactly 2 decimal places (similar to currency), assign to `modifiedTotal` variable
     // Example: 0.1 would be shown as 0.10, 1 would be shown as 1.00, 0.011 as 0.01, etc
@@ -30,14 +30,25 @@ function sumValues($arr, $arrayNumber)
 
     $total = 0;
     // Start Solution Edits
-    // Solve Challenge 1 here: Sum all values
 
+   // UCID: dc696
+   // Date: 03/09/2026
+   // Plan:
+   // 1. Looping through each value in the array
+   // 2. Adding each value to the $total variable
+   // 3. After calculating the sum, I format the result to exactly 2 decimal places
+   // 4. To Store the formatted value in $modifiedTotal
 
-    // Solve Challenge 2 here: Format to 2 decimal places
-    $modifiedTotal = "?";
+   // Solve Challenge 1 here: Sum all values
+   foreach ($arr as $value) {
+       $total += $value;
+}
 
-    // End Solution Edits
-    printScenario2Output($total, $modifiedTotal);
+// Solve Challenge 2 here: Format to 2 decimal places
+$modifiedTotal = number_format($total, 2);
+
+// End Solution Edits
+   printScenario2Output($total, $modifiedTotal);
     echo "</div>";
 }
 
