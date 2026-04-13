@@ -41,9 +41,9 @@ if (isset($_POST["email"], $_POST["password"], $_POST["confirm"])) {
         $hasError = true;
     }
     // Sanitize and validate email
-    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Invalid email address<br>";
+    $email = sanitize_email ($email);
+    if (!is_valid_email($email)){
+        echo "Invalid email address";
         $hasError = true;
     }
     if (empty($password)) {

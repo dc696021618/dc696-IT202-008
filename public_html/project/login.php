@@ -35,8 +35,8 @@ if (isset($_POST["email"], $_POST["password"])) {
         $hasError = true;
     }
     // Sanitize and validate email
-    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $email = sanitize_email ($email);
+    if (!is_valid_email($email)){
         echo "Invalid email address";
         $hasError = true;
     }
@@ -51,7 +51,6 @@ if (isset($_POST["email"], $_POST["password"])) {
     }
 
     if (!$hasError) {
-
         // TODO 4: Check password and fetch user
         if (!$hasError) {
             //TODO 4: Check password and fetch user
