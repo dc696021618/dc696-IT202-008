@@ -74,18 +74,20 @@ require(__DIR__."/../../partials/nav.php");
     if (!$hasError) {
         // TODO 4: Hash password and store record in DB
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-        $db = getDB(); // available due to the `require()` of `functions.php`
+        $db = getDB();
+        // DEBUG: Check which database we are connected to
+        $result = $db->query("SELECT DATABASE()");
+        echo "Connected to: " . $result->fetchColumn() . "<br>";
         // Code for inserting user data into the database
         $stmt = $db->prepare("INSERT INTO Users (email, password) VALUES (:email, :password)");
         try{
             $stmt->execute([':email' => $email, ':password' => $hashed_password]);
-            //echo "Successfully registered!<br>";
             flash("Successfully registered! You can now log in.", "success");
         }
         catch(Exception $e){
-            //echo "There was an error registering<br>"; // user-friendly message
             flash("There was an error registering. Please try again.", "danger");
-            error_log("Registration Error: " . var_export($e, true)); // log the technical error for debugging
+            echo "Exact Error: " . $e->getMessage() . "<br>";
+            error_log("Registration Error: " . var_export($e, true));
         }
     }
 }
