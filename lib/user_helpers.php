@@ -26,6 +26,18 @@ function is_logged_in($redirect = false, $destination = "login.php")
     }
     return $isLoggedIn;
 }
+function has_role($role_name) {
+    if (!is_logged_in()) return false;
+    $user = $_SESSION['user'];
+    if (isset($user['roles'])) {
+        foreach ($user['roles'] as $role) {
+            if ($role['name'] === $role_name && $role['is_active'] == 1) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function get_username()
 {
     if (is_logged_in()) { //we need to check for login first because "user" key may not exist
